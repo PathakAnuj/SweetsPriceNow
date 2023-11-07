@@ -5,13 +5,11 @@
 1. [Project Description](#project-description)
 2. [Key Features](#key-features)
 3. [Demo](#demo)
-4. [Getting Started](#getting-started)
-   - [Prerequisites](#prerequisites)
-   - [Installation](#installation)
-5. [Usage](#usage)
-6. [Contributing](#contributing)
-7. [License](#license)
-8. [Acknowledgements](#acknowledgements)
+4. [Primary Azure Technology](#Primary-Azure-Technology)
+5. [After Deployment Look LIke](#After-Deployment-Look-LIke)
+6. [usage](#usage)
+7. [Acknowledgements](#acknowledgements)
+
 
 ## Project Description
 "SweetsPriceNow" is a digital platform designed to revolutionize the sweet shopping experience. It addresses the common problem of locating sweet shops, comparing prices, and exploring sweet dishes. Our platform simplifies sweet shopping by offering real-time pricing and a comprehensive catalog of sweet items from various shops. With SweetsPriceNow, you can satisfy your sweet cravings with ease and convenience.
@@ -24,7 +22,7 @@
 - **Price Comparison**: Effortlessly compare prices and offerings from different shops.
 
 ## Demo
-Explore a live demo of the SweetsPriceNow website [here](#).
+Explore a live demo of the SweetsPriceNow website [here](https://proud-wave-0483a5210.4.azurestaticapps.net/).
 
 ![Screenshot (116)](https://github.com/PathakAnuj/SweetsPriceNow/assets/109123656/822c0ad2-caf5-4e09-a42a-eb95245f0d6b)
 
@@ -38,7 +36,7 @@ Explore a live demo of the SweetsPriceNow website [here](#).
 <img width="953" alt="image" src="https://github.com/PathakAnuj/SweetsPriceNow/assets/109123656/d0e5111d-5cfb-4834-b2e9-49dc454ba0e0">
 
 <h2>Azure Maps OverView</h2>
-<h2>Static Web App OverView</h2>
+
 <img width="952" alt="image" src="https://github.com/PathakAnuj/SweetsPriceNow/assets/109123656/be4c0d3d-db6d-44ed-a433-1214deee3950">
 
 <h2>Static Web App OverView</h2>
