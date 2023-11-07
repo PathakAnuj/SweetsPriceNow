@@ -33,14 +33,15 @@ Explore a live demo of the SweetsPriceNow website [here](#).
 ![Screenshot (118)](https://github.com/PathakAnuj/SweetsPriceNow/assets/109123656/74fe3c61-eb9e-4c7e-ab22-5b80e4baa960)
 
 ## Primary Azure Technology
-<h2>Azure Maps OverView</h2>
+<h2>Resource Group OverView</h2>
 
 <img width="953" alt="image" src="https://github.com/PathakAnuj/SweetsPriceNow/assets/109123656/d0e5111d-5cfb-4834-b2e9-49dc454ba0e0">
 
+<h2>Azure Maps OverView</h2>
 <h2>Static Web App OverView</h2>
 <img width="952" alt="image" src="https://github.com/PathakAnuj/SweetsPriceNow/assets/109123656/be4c0d3d-db6d-44ed-a433-1214deee3950">
 
-
+<h2>Static Web App OverView</h2>
 <img width="956" alt="image" src="https://github.com/PathakAnuj/SweetsPriceNow/assets/109123656/b56ec98a-f80b-4f5c-be1b-7d27c12ee6a5">
 
 
