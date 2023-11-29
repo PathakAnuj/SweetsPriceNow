@@ -1,95 +1,198 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>SweetsPriceNow</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
-  </head>
+    <style>
+        .highlighted {
+            background-color: #f0f0f0;
+        }
 
-  <body>
-    <div class="topnav">
+        .about-us-section {
+    background-image: url('./images/banner2.gif'); /* Replace with the actual image path */
+    background-size: contain; /* Adjust as needed */
+    background-position: center top; /* Adjust the position as needed */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    
+    text-align: center;
+}
+
+        .about-us-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .about-us-section p {
+            font-size: 1.2em;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .about-us-section a {
+            color: #080808; /* Link color on the background image */
+        }
+    </style>
+</head>
+
+<body>
+  <div class="topnav">
       <a class="active" href="">Home</a>
       <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <input type="text" placeholder="Search.." />
-    </div>
+      <a href="./htmls/contactPage.html">Contact</a>
+      <input type="text" placeholder="Search.." id="searchInput" />
+      <div id="autocompleteResults" class="autocomplete-results"></div>
+  </div>
 
-    <div id="banner">
-      <img style="margin: auto; width: 100vw" src="./images/banner.png"  />
-    </div>
+  <div id="banner">
+      <img style="margin: auto; width: 100vw" src="./images/banner.png" />
+  </div>
 
-    <div id="about">
-      <h2>About Us</h2>
-      <p>
+  <div id="about" class="about-us-section">
+    <h2>About Us</h2>
+    <p>
         Welcome to our sweet shop directory! We're here to make your sweet
         cravings a delightful experience. Our mission is to provide you with
         up-to-date information on the current prices of sweets from various
         shops in your region. Whether you're looking for traditional Indian
         sweets or innovative dessert options, we've got you covered.
-      </p>
-      <p>
+    </p>
+    <p>
         Our platform allows you to explore a wide range of sweet shops, their
         specialty dishes, and the prices you can expect. We strive to make it
-        easier for you to make informed decisions on where to satisfy your sweet
-        tooth.
-      </p>
-      <p>
+        easier for you to make informed decisions on where to satisfy your sweet tooth.
+    </p>
+    <p>
         Enjoy browsing through our listings and discovering the delightful world
         of sweets. If you have any questions or suggestions, feel free to
-        <a href="#contact">contact us</a>.
-      </p>
-    </div>
+        <a href="./htmls/contactPage.html">contact us</a>.
+    </p>
+</div>
 
-    <div class="container">
+  <div class="container">
       <div class="row">
-        <div class="shops">
-          <a href="./htmls/shop1.html"><img src="./images/shop1.jpeg" /></a>
-          <div>Aggarwal Sweets</div>
-        </div>
+          <div class="shops" id="aggarwal-sweets">
+              <a href="./htmls/shop1.html"><img src="./images/shop1.jpeg" /></a>
+              <div>Aggarwal Sweets</div>
+          </div>
 
-        <div class="shops">
-          <a href="./htmls/shop2.html"><img src="./images/shop2.jpeg" /></a>
-          <div>Raj Sweets</div>
-        </div>
+          <div class="shops" id="raj-sweets">
+              <a href="./htmls/shop2.html"><img src="./images/shop2.jpeg" /></a>
+              <div>Raj Sweets</div>
+          </div>
 
-        <div class="shops">
-          <a href="./htmls/shop3.html"><img src="./images/shop3.jpeg" /></a>
-          <div>Atul Sweets</div>
-        </div>
+          <div class="shops" id="atul-sweets">
+              <a href="./htmls/shop3.html"><img src="./images/shop3.jpeg" /></a>
+              <div>Atul Sweets</div>
+          </div>
       </div>
 
       <div class="row2">
-        <div class="shops">
-          <a href="./htmls/shop4.html"><img src="./images/shop4.jpeg" /></a>
-          <div>Ram Anuj Sweets</div>
-        </div>
+          <div class="shops" id="ram-anuj-sweets">
+              <a href="./htmls/shop4.html"><img src="./images/shop4.jpeg" /></a>
+              <div>Ram Anuj Sweets</div>
+          </div>
 
-        <div class="shops">
-          <a href="./htmls/shop5.html"><img src="./images/shop5.jpeg" /></a>
-          <div>Suraj ki Dukan</div>
-        </div>
+          <div class="shops" id="suraj-ki-dukan">
+              <a href="./htmls/shop5.html"><img src="./images/shop5.jpeg" /></a>
+              <div>Suraj ki Dukan</div>
+          </div>
       </div>
-    </div>
+  </div>
 
-    <div>
+  <div>
       <iframe
-        style="border: 0; width: 100vw; height: 350px"
-        src="./htmls/maps.html"
-        frameborder="0"
-        allowfullscreen
+          style="border: 0; width: 100vw; height: 350px"
+          src="./htmls/maps.html"
+          frameborder="0"
+          allowfullscreen
       ></iframe>
-    </div>
+  </div>
 
-    <div class="footer">
+  <div class="footer">
       <p>&copy; 2023 Your Sweet Shop</p>
       <p>"मिठास से भरी जिंदगी मिले।"</p>
       <!-- Add your sweet quote here -->
       <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
       </div>
-    </div>
-  </body>
+  </div>
+
+    <script>
+        function getAutocompleteSuggestions(query) {
+            const dummyData = [
+                'Aggarwal Sweets',
+                'Raj Sweets',
+                'Atul Sweets',
+                'Ram Anuj Sweets',
+                'Suraj ki Dukan',
+                // Add more sweets or shop names as needed
+            ];
+
+            return dummyData.filter(item => item.toLowerCase().includes(query));
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const searchValue = this.value.toLowerCase();
+            const autocompleteResults = document.getElementById('autocompleteResults');
+
+            autocompleteResults.innerHTML = '';
+
+            const matchingResults = getAutocompleteSuggestions(searchValue);
+
+            matchingResults.forEach((result, index) => {
+                const suggestionItem = document.createElement('div');
+                suggestionItem.textContent = result;
+                suggestionItem.classList.add('autocomplete-item');
+
+                suggestionItem.addEventListener('click', function () {
+                    document.getElementById('searchInput').value = result;
+                    autocompleteResults.innerHTML = '';
+
+                    // Navigate to the selected suggestion
+                    const targetElement = document.getElementById(result.replace(/\s+/g, '-').toLowerCase());
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                        // Highlight the selected suggestion
+                        this.classList.add('highlighted');
+                    }
+                });
+
+                autocompleteResults.appendChild(suggestionItem);
+            });
+
+            // Add event listener for keyboard navigation
+            const autocompleteItems = document.querySelectorAll('.autocomplete-item');
+            let selectedSuggestionIndex = -1;
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'ArrowUp' && selectedSuggestionIndex > 0) {
+                    autocompleteItems[selectedSuggestionIndex].classList.remove('highlighted');
+                    selectedSuggestionIndex--;
+                    autocompleteItems[selectedSuggestionIndex].classList.add('highlighted');
+                } else if (event.key === 'ArrowDown' && selectedSuggestionIndex < matchingResults.length - 1) {
+                    if (selectedSuggestionIndex >= 0) {
+                        autocompleteItems[selectedSuggestionIndex].classList.remove('highlighted');
+                    }
+                    selectedSuggestionIndex++;
+                    autocompleteItems[selectedSuggestionIndex].classList.add('highlighted');
+                }
+            });
+        });
+
+        document.addEventListener('click', function (event) {
+            const autocompleteResults = document.getElementById('autocompleteResults');
+            const searchInput = document.getElementById('searchInput');
+
+            if (event.target !== searchInput && event.target !== autocompleteResults) {
+                autocompleteResults.innerHTML = '';
+            }
+        });
+    </script>
+</body>
 </html>
+

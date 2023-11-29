@@ -11,8 +11,9 @@ body {
 
 /* Add a black background color to the top navigation bar */
 .topnav {
+  display: flex;
   overflow: hidden;
-  background-color: #f46c6c;
+  background-color: #6c83f4;
   margin-bottom: 20px;
   width: 100vw;
 }
@@ -28,20 +29,21 @@ body {
   font-size: 17px;
 }
 
+
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: #f5b9b9;
   color: black;
 }
 
 /* Style the "active" element to highlight the current page */
-.topnav a.active {
-  background-color: #2196F3;
+.topnav .active {
+  background-color: rgb(117, 117, 241);
   color: white;
 }
 
 /* Style the search box inside the navigation bar */
-.topnav input[type=text] {
+.topnav .input[type=text] {
   float: right;
   padding: 6px;
   border: none;
@@ -104,15 +106,15 @@ body {
 
 
 #about{
-  height: 40vh;
+  height: 100vh;
   width: 100vw;
 
   border-radius: 10px;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 0vw 25vw;
   margin:auto;
   color: rgb(10, 13, 191);
-  background-color: #93ecae;
+  
 }
 
 .shops {
@@ -178,4 +180,42 @@ body {
 
 .a img{
   border-radius: 15px;
+}
+
+/* Add some basic styles for the autocomplete dropdown */
+.autocomplete-results {
+  position: absolute;
+  width: 20%;
+  max-height: 150px;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  border-top: none;
+  z-index: 1;
+}
+
+.autocomplete-results div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.autocomplete-results div:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+.contactCard{
+  
+  height: 80vh;
+  width: 80vw;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  background-color: #6c83f4;
+  margin: auto;
+  margin-bottom: 20px;
+  border-radius: 0px 40px 0px 40px;
+
 }

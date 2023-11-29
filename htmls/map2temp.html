@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Interactive Search with Directions - Azure Maps Web SDK Samples</title>
+
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="This tutorial shows how to create an interactive search experience with directions." />
+    <meta name="keywords" content="Microsoft maps, map, gis, API, SDK, services, module, tutorials, search, point of interest, POI" />
+    <meta name="author" content="Microsoft Azure Maps" />
+    <meta name="version" content="1.0" />
+    <meta name="screenshot" content="screenshot.jpg" />
+
+    <!-- Add references to the Azure Maps Map control JavaScript and CSS files. -->
+    <link href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.css" rel="stylesheet" />
+    <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.js"></script>
+
+    <!-- Add a reference to the Azure Maps Services Module JavaScript file. -->
+    <script src="https://atlas.microsoft.com/sdk/javascript/service/2/atlas-service.min.js"></script>
+
+    <script>
+        var map, datasource, client, popup, searchInput, resultsPanel, searchInputLength, centerMapOnResults;
+
+        //The minimum number of characters needed in the search input before a search is performed.
+        var minSearchInputLength = 3;
+
+        //The number of ms between key strokes to wait before performing a search.
+        var keyStrokeDelay = 150;
+
+        function GetMap() {
+            // Initialize a map instance.
+            map = new atlas.Map('myMap', {
+                center: [77.2090, 28.6139],
+                zoom: 12,
+                language: 'en-US',
+                authOptions: {
+                    authType: 'subscriptionKey',
+                    subscriptionKey: 'a_kHLwfp1HHaPj9bs9drc0fXTMv51faV4HyOOi0cGhU'
+                }
+            });
+
+            // Store a reference to the Search Info Panel.
+            resultsPanel = document.getElementById("results-panel");
+
+            // Add key up event to the search box.
+            searchInput = document.getElementById("search-input");
+            searchInput.addEventListener("keyup", searchInputKeyup);
+
+            // Create a popup which we can reuse for each result.
+            popup = new atlas.Popup();
+
+            // Wait until the map resources are ready.
+            map.events.add('ready', function () {
+
+                // Add the zoom control to the map.
+                map.controls.add(new atlas.control.ZoomControl(), {
+                    position: 'top-right'
+                });
+
+                // Create a data source and add it to the map.
+                datasource = new atlas.source.DataSource();
+                map.sources.add(datasource);
+
+                // Add a layer for rendering the results.
+                var searchLayer = new atlas.layer.SymbolLayer(datasource, null, {
+                    iconOptions: {
+                        image: 'pin-round-darkblue',
+                        anchor: 'center',
+                        allowOverlap: true
+                    }
+                });
+                map.layers.add(searchLayer);
+
+                // Add a click event to the search layer and show a popup when a result is clicked.
+                map.events.add("click", searchLayer, function (e) {
+                    // Make sure the event occurred on a shape feature.
+                    if (e.shapes && e.shapes.length > 0) {
+                        showPopup(e.shapes[0]);
+                    }
+                });
+            });
+        }
+
+        function searchInputKeyup(e) {
+            centerMapOnResults = false;
+            if (searchInput.value.length >= minSearchInputLength) {
+                if (e.keyCode === 13) {
+                    centerMapOnResults = true;
+                }
+                // Wait 100ms and see if the input length is unchanged before performing a search.
+                // This will reduce the number of queries being made on each character typed.
+                setTimeout(function () {
+                    if (searchInputLength == searchInput.value.length) {
+                        search();
+                    }
+                }, keyStrokeDelay);
+            } else {
+                resultsPanel.innerHTML = '';
+            }
+            searchInputLength = searchInput.value.length;
+        }
+
+        function search() {
+            // Remove any previous results from the map.
+            datasource.clear();
+            popup.close();
+            resultsPanel.innerHTML = '';
+
+            // Use MapControlCredential to share authentication between a map control and the service module.
+            var pipeline = atlas.service.MapsURL.newPipeline(new atlas.service.MapControlCredential(map));
+
+            // Use the Azure Maps REST Search API to search for the specified query string.
+            // If the user's current location is known, use it as the center for the search, 
+            // otherwise use the map's current center.
+            var searchURL = new atlas.service.SearchURL(pipeline);
+            searchURL.searchPOI(atlas.service.Aborter.timeout(10000), searchInput.value, {
+                limit: 5,
+                view: 'Auto'
+            }).then(showResultsOnMap);
+        }
+
+        function showResultsOnMap(results) {
+            // Create a bounding box for the search results.
+            var bounds = atlas.data.BoundingBox.fromData(results);
+
+            // Check to see if the user wants to center the map on the results.
+            if (centerMapOnResults) {
+                map.setCamera({
+                    bounds: bounds,
+                    padding: 40
+                });
+            }
+
+            // Add the results to the map.
+            datasource.add(results);
+
+            // Create the HTML for the results list.
+            var html = [];
+
+            for (var i = 0; i < results.length; i++) {
+                var r = results[i];
+                html.push('<li onclick="getDirections(', r.id, ')"><b>', r.poi.name, '</b><br>', r.address.freeformAddress, '</li>');
+            }
+
+            // Add the results to the result panel.
+            resultsPanel.innerHTML = '<h5>Search Results</h5><ul>' + html.join('') + '</ul>';
+        }
+
+        function showPopup(shape) {
+            // Get the properties and coordinates of the shape.
+            var properties = shape.getProperties();
+            var coordinates = shape.getCoordinates();
+
+            // Create the HTML content of the popup.
+            var html = ['<div style="padding:10px; max-width: 200px;">'];
+            html.push('<h5>', properties.poi.name, '</h5>');
+            html.push('<p>', properties.address.freeformAddress, '</p>');
+            html.push('<button onclick="getDirections(\'', properties.id, '\')">Get Directions</button>');
+            html.push('</div>');
+
+            // Set the popup's coordinates and content.
+            popup.setOptions({
+                position: coordinates,
+                content: html.join('')
+            });
+
+            // Open the popup.
+            popup.open(map);
+        }
+
+        function getDirections(resultId) {
+            // Get the selected result
+            var selectedResult = datasource.getShapeById(resultId);
+
+            // Get the user's current location
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var userLocation = [position.coords.longitude, position.coords.latitude];
+
+                // Use MapControlCredential to share authentication between a map control and the service module.
+                var pipeline = atlas.service.MapsURL.newPipeline(new atlas.service.MapControlCredential(map));
+
+                // Construct the RouteURL object
+                var routeURL = new atlas.service.RouteURL(pipeline);
+
+                // Calculate route from user location to the selected result
+                routeURL.calculateRoute(atlas.service.Aborter.timeout(10000), [
+                    { position: userLocation },
+                    { position: selectedResult.getCoordinates() }
+                ]).then(function (directions) {
+                    // Extract route information from the response and display it
+                    var route = directions.routes[0];
+                    displayDirections(route);
+                });
+            });
+        }
+
+        function displayDirections(route) {
+            // Clear previous directions
+            resultsPanel.innerHTML = '';
+
+            // Display each step of the directions
+            route.guidance.forEach(function (step) {
+                var html = `<li>${step.instruction.text}</li>`;
+                resultsPanel.innerHTML += html;
+            });
+        }
+    </script>
+</head>
+
+<body onload="GetMap()">
+    <div id="myMap" style="position:relative;width:100%;min-height:500px;"></div>
+    <div id="results-panel" style="position:absolute;box-shadow:0 2px 6px rgba(0,0,0,0.3);background:#fff;max-width:250px;width:100%;top:0;bottom:0;left:0;right:0;margin:auto;overflow:auto;display:none;"></div>
+    <input id="search-input" type="text" placeholder="Search for places..." style="position:absolute;top:10px;left:10px;right:10px;width:80%;margin:auto;z-index:1;padding:5px;" />
+</body>
+
+</html>
