@@ -25,6 +25,8 @@
 Explore a live demo of the SweetsPriceNow website [here](https://proud-wave-0483a5210.4.azurestaticapps.net/).
 
 ![Screenshot (116)](https://github.com/PathakAnuj/SweetsPriceNow/assets/109123656/822c0ad2-caf5-4e09-a42a-eb95245f0d6b)
+<img width="946" alt="image" src="https://github.com/PathakAnuj/SweetsPriceNow/assets/109123656/fe93a9e5-8337-4376-915d-513c9be8e82f">
+
 
 ![Screenshot (117)](https://github.com/PathakAnuj/SweetsPriceNow/assets/109123656/9ce8b4a9-a34d-4229-aa0d-a89de3c9cad4)
 
